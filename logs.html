@@ -21,6 +21,7 @@
     <div class="section">
         <h2>Visitor Logs</h2>
         <button class="btn" onclick="loadCSV('visitors/Visitors.csv', 'visitorsTable')">Load Visitors Logs</button>
+        <button class="btn" onclick="exportTable('visitorsTable', 'Visitors_Export')">Export Visitors CSV</button>
         <table id="visitorsTable">
             <thead></thead>
             <tbody></tbody>
@@ -30,6 +31,7 @@
     <div class="section">
         <h2>Complaint Logs</h2>
         <button class="btn" onclick="loadCSV('complaints/Complaints.csv', 'complaintsTable')">Load Complaints Logs</button>
+        <button class="btn" onclick="exportTable('complaintsTable', 'Complaints_Export')">Export Complaints CSV</button>
         <table id="complaintsTable">
             <thead></thead>
             <tbody></tbody>
@@ -57,6 +59,26 @@
                     }
                 })
                 .catch(err => alert('Error loading CSV file.'));
+        }
+
+        function exportTable(tableId, filename) {
+            const table = document.getElementById(tableId);
+            let csv = [];
+            const rows = table.querySelectorAll('tr');
+
+            rows.forEach(row => {
+                const cols = row.querySelectorAll('th, td');
+                let rowData = [];
+                cols.forEach(col => rowData.push(col.innerText));
+                csv.push(rowData.join(','));
+            });
+
+            const csvData = csv.join('\n');
+            const hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = filename + '.csv';
+            hiddenElement.click();
         }
     </script>
 
