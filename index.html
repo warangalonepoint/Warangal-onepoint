@@ -29,13 +29,17 @@
     </div>
 
     <script>
-        // We'll link this to pins.json in future
-        const PIN_ROUTES = {
-            "1111": "residents.html",
-            "2222": "committee.html",
-            "3333": "guards.html",
-            "4444": "admin.html"
-        };
+        let PIN_ROUTES = {};
+
+        // Fetch PINs from pins.json dynamically
+        fetch('pins.json')
+            .then(response => response.json())
+            .then(data => {
+                PIN_ROUTES = data;
+            })
+            .catch(() => {
+                alert("Failed to load PINs configuration.");
+            });
 
         function checkPIN() {
             const pin = document.getElementById('pinInput').value.trim();
