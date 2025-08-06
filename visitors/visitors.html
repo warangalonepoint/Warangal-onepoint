@@ -1,69 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Visitor Entry | Onestop Society</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { margin: 0; font-family: Arial, sans-serif; background: #f5f5f5; }
-        .hero {
-            width: 100%;
-            height: 200px;
-            background: url('/Warangal-onepoint/visitors/assets/banner.png') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .hero img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            position: absolute;
-            top: 20px;
-        }
-        .hero h1 {
-            color: white;
-            background: rgba(0,0,0,0.5);
-            padding: 10px 20px;
-            border-radius: 10px;
-            position: absolute;
-            bottom: 20px;
-        }
-        .container {
-            padding: 20px;
-            background: white;
-            margin-top: -50px;
-            border-radius: 20px 20px 0 0;
-        }
-        label { display: block; margin: 15px 0 5px; font-size: 16px; }
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        .call-btn { background: #007AFF; color: white; }
-        .submit-btn { background: black; color: white; }
-        .take-photo { background: #ccc; color: black; margin-top: 10px; }
-    </style>
-</head>
+<style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f5f5f5; }
+    .hero {
+        width: 100%;
+        height: 120px;
+        background: url('/Warangal-onepoint/visitors/assets/banner.png') center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px;
+    }
+    .hero img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+    .title {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 20px 0 10px;
+    }
+    .container {
+        padding: 20px;
+        background: white;
+        border-radius: 20px 20px 0 0;
+    }
+    label { display: block; margin: 15px 0 5px; font-size: 16px; }
+    input, select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+    button {
+        width: 100%;
+        padding: 15px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .call-btn { background: #007AFF; color: white; }
+    .submit-btn { background: black; color: white; }
+    .take-photo { background: #ccc; color: black; margin-top: 10px; }
+</style>
+
 <body>
 
     <div class="hero">
         <img src="/Warangal-onepoint/visitors/assets/logo.png" alt="Logo">
-        <h1>Onestop Society</h1>
     </div>
+
+    <div class="title">Onestop Society</div>
 
     <div class="container">
         <h2>Visitor Entry</h2>
@@ -84,37 +74,4 @@
 
         <button class="submit-btn" onclick="submitEntry()">Submit Entry</button>
     </div>
-
-    <script>
-        function callResident() {
-            let flat = document.getElementById('flatNumber').value.trim();
-            if(flat === "") { alert("Enter Flat Number"); return; }
-            // Mock Number Logic
-            let number = "+919999999999";  // Dummy number
-            window.location.href = "tel:" + number;
-        }
-
-        function submitEntry() {
-            let flat = document.getElementById('flatNumber').value.trim();
-            let type = document.getElementById('visitorType').value;
-            if(flat === "") { alert("Enter Flat Number"); return; }
-
-            let csvRow = `${new Date().toLocaleString()},${flat},${type}\n`;
-
-            downloadCSV(csvRow);
-            alert("Entry Saved Successfully");
-            document.getElementById('flatNumber').value = "";
-            document.getElementById('visitorType').selectedIndex = 0;
-        }
-
-        function downloadCSV(data) {
-            let hiddenElement = document.createElement('a');
-            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(data);
-            hiddenElement.target = '_blank';
-            hiddenElement.download = 'Visitors.csv';
-            hiddenElement.click();
-        }
-    </script>
-
 </body>
-</html>
