@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complaint Form | Onestop Society</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f5f5f5; }
+        .hero {
+            width: 100%;
+            height: 120px;
+            background: url('/Warangal-onepoint/visitors/assets/banner.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px;
+        }
+        .hero img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0 10px;
+        }
+        .container {
+            padding: 20px;
+            background: white;
+            border-radius: 20px 20px 0 0;
+        }
+        label { display: block; margin: 15px 0 5px; font-size: 16px; }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .submit-btn { background: black; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <img src="/Warangal-onepoint/visitors/assets/logo.png" alt="Logo">
+    </div>
+
+    <div class="title">Onestop Society</div>
+
+    <div class="container">
+        <h2>Resident Complaint Form</h2>
+
+        <label>Flat Number</label>
+        <input type="text" id="flatNumber" placeholder="Enter Flat No">
+
+        <label>Complaint Type</label>
+        <select id="complaintType">
+            <option>Plumbing</option>
+            <option>Electrical</option>
+            <option>Security</option>
+            <option>Other</option>
+        </select>
+
+        <label>Description</label>
+        <textarea id="description" placeholder="Describe the issue"></textarea>
+
+        <button class="submit-btn" onclick="submitComplaint()">Submit Complaint</button>
+    </div>
+
+    <script>
+        function submitComplaint() {
+            let flat = document.getElementById('flatNumber').value.trim();
+            let type = document.getElementById('complaintType').value;
+            let desc = document.getElementById('description').value.trim();
+
+            if(flat === "" || desc === "") {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            let csvRow = `${new Date().toLocaleString()},${flat},${type},${desc}\n`;
+
+            downloadCSV(csvRow);
+            alert("Complaint Submitted Successfully");
+
+            document.getElementById('flatNumber').value = "";
+            document.getElementById('complaintType').selectedIndex = 0;
+            document.getElementById('description').value = "";
+        }
+
+        function downloadCSV(data) {
+            let hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(data);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'Complaints.csv';
+            hiddenElement.click();
+        }
+    </script>
+
+</body>
+</html>
