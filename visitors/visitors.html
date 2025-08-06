@@ -6,12 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body { margin: 0; font-family: Arial, sans-serif; background: #f5f5f5; }
-        .hero { width: 100%; height: 200px; background: url('../assets/banner.png') center/cover no-repeat; display: flex; align-items: center; justify-content: center; }
-        .hero h1 { color: white; background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; }
-        .container { padding: 20px; background: white; margin-top: -50px; border-radius: 20px 20px 0 0; }
+        .hero {
+            width: 100%;
+            height: 200px;
+            background: url('/Warangal-onepoint/visitors/assets/banner.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hero img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+        }
+        .hero h1 {
+            color: white;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 20px;
+        }
+        .container {
+            padding: 20px;
+            background: white;
+            margin-top: -50px;
+            border-radius: 20px 20px 0 0;
+        }
         label { display: block; margin: 15px 0 5px; font-size: 16px; }
-        input, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ccc; font-size: 16px; }
-        button { width: 100%; padding: 15px; margin-top: 20px; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
         .call-btn { background: #007AFF; color: white; }
         .submit-btn { background: black; color: white; }
         .take-photo { background: #ccc; color: black; margin-top: 10px; }
@@ -20,6 +61,7 @@
 <body>
 
     <div class="hero">
+        <img src="/Warangal-onepoint/visitors/assets/logo.png" alt="Logo">
         <h1>Onestop Society</h1>
     </div>
 
